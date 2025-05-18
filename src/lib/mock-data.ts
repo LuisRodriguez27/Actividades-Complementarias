@@ -15,7 +15,7 @@ export const currentSemester: Semester = {
 export const previousSemesters: Semester[] = [
   {
     id: "sem-2024-2",
-    name: "August-December 2024",
+    name: "Agosto-Diciembre 2024",
     startDate: new Date("2024-08-01"),
     endDate: new Date("2024-12-15"),
     enrollmentOpen: false,
@@ -23,7 +23,7 @@ export const previousSemesters: Semester[] = [
   },
   {
     id: "sem-2024-1",
-    name: "February-June 2024",
+    name: "Febrero-Junio 2025",
     startDate: new Date("2024-02-01"),
     endDate: new Date("2024-06-30"),
     enrollmentOpen: false,
@@ -117,8 +117,8 @@ export const activities: Activity[] = [
   {
     id: "act-6",
     code: "IDM-001",
-    name: "Inglés Conversacional",
-    description: "Práctica de conversación en inglés",
+    name: "Ajedrez I",
+    description: "Fundamentos de ajedrez",
     categoryId: "cat-4",
     maxCapacity: 20,
   },

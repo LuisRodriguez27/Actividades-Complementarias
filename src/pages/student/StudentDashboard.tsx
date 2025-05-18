@@ -4,6 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { currentSchedules, studentEnrollments, getActivityById, getTeacherById } from "@/lib/mock-data";
 import { useAuth } from "@/contexts/AuthContext";
 import { Calendar, Clock, MapPin } from "lucide-react";
+import { Download } from "lucide-react"; // Agregar Download al import existente
+import { Button } from "@/components/ui/button"; // Nuevo import
 
 const DayMap: { [key: number]: string } = {
   0: "Domingo",
@@ -52,39 +54,40 @@ const StudentDashboard = () => {
               <CardContent className="p-6 space-y-4">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <div className="flex items-start gap-3">
-                    <Calendar className="mt-1 text-accent" size={20} />
+                    <Calendar className="mt-1 text-accent" size={20}/>
                     <div>
                       <h3 className="font-semibold">Día</h3>
                       <p>{DayMap[currentSchedule.dayOfWeek]}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
-                    <Clock className="mt-1 text-accent" size={20} />
+                    <Clock className="mt-1 text-accent" size={20}/>
                     <div>
                       <h3 className="font-semibold">Horario</h3>
                       <p>{currentSchedule.startTime} - {currentSchedule.endTime}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
-                    <MapPin className="mt-1 text-accent" size={20} />
+                    <MapPin className="mt-1 text-accent" size={20}/>
                     <div>
                       <h3 className="font-semibold">Ubicación</h3>
                       <p>{currentSchedule.location}</p>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="pt-4 border-t">
                   <h3 className="font-semibold mb-2">Descripción de la Actividad</h3>
                   <p>{activity.description}</p>
                 </div>
-                
+
                 <div className="pt-4 border-t">
                   <h3 className="font-semibold mb-2">Profesor</h3>
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center">
+                    <div
+                        className="h-10 w-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center">
                       {teacher.name.slice(0, 1)}
                     </div>
                     <div>
@@ -93,25 +96,31 @@ const StudentDashboard = () => {
                     </div>
                   </div>
                 </div>
-                
-                <div className="pt-4 border-t flex flex-col sm:flex-row sm:justify-between">
+                <div className="pt-4 border-t flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
                   <div>
                     <h3 className="font-semibold mb-1">Cupo</h3>
                     <p className="text-sm">
                       {currentSchedule.enrolledStudents}/{currentSchedule.maxCapacity} alumnos inscritos
                     </p>
                   </div>
-                  
-                  <div className="mt-2 sm:mt-0">
-                    <h3 className="font-semibold mb-1">Estado</h3>
-                    <span className="inline-block bg-green-500/20 text-green-700 dark:text-green-400 px-3 py-1 rounded-full text-sm">
-                      Inscrito
-                    </span>
+
+                  <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
+                    <div>
+                      <h3 className="font-semibold mb-1">Estado</h3>
+                      <span className="inline-block bg-green-500/20 text-green-700 dark:text-green-400 px-3 py-1 rounded-full text-sm">
+                        Inscrito
+                      </span>
+                    </div>
+
+                    <Button variant="outline" size="sm" className="flex items-center gap-2">
+                      <Download size={16}/>
+                      Descargar horario
+                    </Button>
                   </div>
                 </div>
               </CardContent>
             </Card>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
@@ -124,7 +133,7 @@ const StudentDashboard = () => {
                   </div>
                 </CardContent>
               </Card>
-              
+
               <Card>
                 <CardHeader>
                   <CardTitle>Calendario</CardTitle>

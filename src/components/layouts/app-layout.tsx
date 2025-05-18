@@ -46,7 +46,7 @@ export function AppLayout({ children }: AppLayoutProps) {
       <header className="bg-primary text-primary-foreground py-4 shadow-md">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center">
-            <h1 className="text-xl font-bold">Universidad App</h1>
+            <h1 className="text-xl font-bold">Instituto Tecnologico de Oaxaca</h1>
           </div>
 
           {/* Mobile menu toggle */}

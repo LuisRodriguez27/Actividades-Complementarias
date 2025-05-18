@@ -36,7 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } else if (email === "student@example.com" && password === "password") {
       setUser({
         id: "2",
-        name: "Student User",
+        name: "Juan Perez",
         email: "student@example.com",
         role: "student",
         photo: "",
