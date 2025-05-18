@@ -36,8 +36,8 @@ const dayMap: { [key: number]: string } = {
 
 const StudentEnrollment = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("");
-  const [dayFilter, setDayFilter] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [dayFilter, setDayFilter] = useState("all");
   const [filterDialogOpen, setFilterDialogOpen] = useState(false);
   const [enrollDialogOpen, setEnrollDialogOpen] = useState(false);
   const [selectedScheduleId, setSelectedScheduleId] = useState("");
@@ -71,10 +71,10 @@ const StudentEnrollment = () => {
           activity.description.toLowerCase().includes(searchQuery.toLowerCase()))) ||
       (teacher && teacher.name.toLowerCase().includes(searchQuery.toLowerCase()));
     
-    const matchesCategory = !categoryFilter || 
+    const matchesCategory = categoryFilter === "all" || 
       (activity && activity.categoryId === categoryFilter);
     
-    const matchesDay = !dayFilter || 
+    const matchesDay = dayFilter === "all" || 
       schedule.dayOfWeek === parseInt(dayFilter);
     
     return matchesSearch && matchesCategory && matchesDay;
@@ -108,11 +108,11 @@ const StudentEnrollment = () => {
 
   // Format active filters for display
   const activeFilters = [];
-  if (categoryFilter) {
+  if (categoryFilter !== "all") {
     const category = activityCategories.find(c => c.id === categoryFilter);
     if (category) activeFilters.push(`Categoría: ${category.name}`);
   }
-  if (dayFilter) {
+  if (dayFilter !== "all") {
     activeFilters.push(`Día: ${dayMap[parseInt(dayFilter)]}`);
   }
 
@@ -171,8 +171,8 @@ const StudentEnrollment = () => {
               size="sm"
               className="h-7 text-xs"
               onClick={() => {
-                setCategoryFilter("");
-                setDayFilter("");
+                setCategoryFilter("all");
+                setDayFilter("all");
               }}
             >
               Limpiar filtros
@@ -289,7 +289,7 @@ const StudentEnrollment = () => {
                     <SelectValue placeholder="Todas las categorías" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Todas las categorías</SelectItem>
+                    <SelectItem value="all">Todas las categorías</SelectItem>
                     {activityCategories.map((category) => (
                       <SelectItem key={category.id} value={category.id}>
                         {category.name}
@@ -305,7 +305,7 @@ const StudentEnrollment = () => {
                     <SelectValue placeholder="Todos los días" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Todos los días</SelectItem>
+                    <SelectItem value="all">Todos los días</SelectItem>
                     {Object.entries(dayMap).map(([value, label]) => (
                       <SelectItem key={value} value={value}>
                         {label}
@@ -319,8 +319,8 @@ const StudentEnrollment = () => {
               <Button 
                 variant="outline" 
                 onClick={() => {
-                  setCategoryFilter("");
-                  setDayFilter("");
+                  setCategoryFilter("all");
+                  setDayFilter("all");
                 }}
               >
                 Limpiar

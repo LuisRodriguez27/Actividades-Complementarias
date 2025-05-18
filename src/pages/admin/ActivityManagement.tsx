@@ -37,7 +37,7 @@ import { useToast } from "@/hooks/use-toast";
 const ActivityManagement = () => {
   const [activities, setActivities] = useState<Activity[]>(mockActivities);
   const [searchQuery, setSearchQuery] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState<string>("");
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [editingActivity, setEditingActivity] = useState<Activity | null>(null);
   
@@ -58,7 +58,7 @@ const ActivityManagement = () => {
       activity.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
       activity.description.toLowerCase().includes(searchQuery.toLowerCase());
       
-    const matchesCategory = categoryFilter ? activity.categoryId === categoryFilter : true;
+    const matchesCategory = categoryFilter === "all" ? true : activity.categoryId === categoryFilter;
       
     return matchesSearch && matchesCategory;
   });
@@ -186,7 +186,7 @@ const ActivityManagement = () => {
                 <SelectValue placeholder="Todas las categorías" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Todas las categorías</SelectItem>
+                <SelectItem value="all">Todas las categorías</SelectItem>
                 {activityCategories.map((category) => (
                   <SelectItem key={category.id} value={category.id}>
                     {category.name}
