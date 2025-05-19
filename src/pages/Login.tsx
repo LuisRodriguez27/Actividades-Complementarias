@@ -33,12 +33,14 @@ const Login = () => {
       toast({
         title: "Inicio de sesión exitoso",
         description: "Bienvenido al sistema de gestión de actividades complementarias.",
+        duration: 1000,
       });
     } catch (error) {
       toast({
         title: "Error de autenticación",
         description: "Credenciales inválidas. Por favor, inténtelo de nuevo.",
         variant: "destructive",
+        duration: 1500,
       });
     } finally {
       setIsLoading(false);
