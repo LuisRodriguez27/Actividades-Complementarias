@@ -12,6 +12,8 @@ import {
 import { previousSemesters, studentEnrollments, getActivityById, getTeacherById } from "@/lib/mock-data";
 import { useAuth } from "@/contexts/AuthContext";
 import { StarRating } from "@/components/ui/star-rating";
+import {Download} from "lucide-react";
+import {Button} from "@/components/ui/button.tsx";
 
 const DayMap: { [key: number]: string } = {
   0: "Domingo",
@@ -136,6 +138,11 @@ const StudentHistory = () => {
                             )}
                           </div>
                         </div>
+
+                        <Button variant="outline" size="sm" className="flex items-center gap-2">
+                          <Download size={16}/>
+                          Descargar horario
+                        </Button>
                         
                         {enrollment.rating && (
                           <div className="space-y-2">

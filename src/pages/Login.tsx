@@ -61,7 +61,7 @@ const Login = () => {
             Instituto Tecnologico de Oaxaca
           </CardTitle>
           <CardDescription>
-            Sistema de Gestión de Actividades Complementarias
+            Coordinación de Actividades Complementarias
           </CardDescription>
         </CardHeader>
         <CardContent>
